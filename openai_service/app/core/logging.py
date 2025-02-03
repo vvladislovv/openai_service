@@ -1,4 +1,4 @@
-from app.db.database import add_info_to_database, JsonData
+from app.db.database import add_to_table, JsonData
 
 
 async def logs_bot(TypeLog: str, Text: str) -> None:
@@ -15,4 +15,4 @@ async def logs_bot(TypeLog: str, Text: str) -> None:
 
     # Сохраняем лог в базу данных
     log_entry = JsonData(data={"level": TypeLog, "message": Text})
-    await add_info_to_database(JsonData, {"data": log_entry.data})  # Оборачиваем log_entry.data в словарь
+    await add_to_table(JsonData, {"data": log_entry.data})  # Оборачиваем log_entry.data в словарь

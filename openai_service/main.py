@@ -1,15 +1,15 @@
+import os
+from dotenv import load_dotenv
+
+# Загружаем переменные окружения из файла .env
+load_dotenv()
+
 from fastapi import FastAPI
-from slowapi import Limiter
-from slowapi.util import get_remote_address
 from app.core.logging import logs_bot
 from app.db.database import init_db
 from app.api.v1.router import api_router
-limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI()
-
-# Добавляем middleware для ограничения частоты
-app.state.limiter = limiter
 
 # Подключаем роутер API v1
 app.include_router(api_router, prefix="/api/v1")
